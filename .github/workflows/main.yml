@@ -5,22 +5,20 @@ on: [push, workflow_dispatch]
 jobs:
   lint-and-check:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.8, 3.9, 3.10]
-        
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Python
-      uses: actions/setup-python@v2
+    - name: Set up Python
+      uses: actions/setup-python@v4
       with:
-      python-version: ${{ matrix.python-version }}
+        python-version: 3.8
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install pytest
         pip install flake8
 
     - name: Lint avec Flake8
@@ -34,5 +32,3 @@ jobs:
     - name: Server check
       run: |
         echo "Ti é le sang chacal !"
-=======
->>>>>>> 34bbca2ee0dd456a50ac4150ac06a9c0f1480f57
