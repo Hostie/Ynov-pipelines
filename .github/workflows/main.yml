@@ -5,18 +5,15 @@ on: [push, workflow_dispatch]
 jobs:
   lint-and-check:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.8", "3.9", "3.10"]
-        
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Python
+    - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: 3.8
 
     - name: Install dependencies
       run: |
@@ -27,11 +24,17 @@ jobs:
     - name: Lint avec Flake8
       run: |
         flake8 .
-    
+  tests: 
     - name: Run tests
+      needs: lint-and-check
       run: |
-        pytest functions.py --doctest-modules
-
+          pytest functions.py --doctest-modules
+  deploy:
     - name: Server check
+      needs: tests
       run: |
         echo "Ti é le sang chacal !"
+  slack-attack: 
+    - name: Slack Attack
+      run: |
+        echo "Voilà la release sur Slack poto avoue jte mets bien la mif. Bien mafé bien tieb"
