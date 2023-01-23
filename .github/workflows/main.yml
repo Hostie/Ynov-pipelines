@@ -24,17 +24,26 @@ jobs:
     - name: Lint avec Flake8
       run: |
         flake8 .
+  
   tests: 
-    - name: Run tests
-      needs: lint-and-check
-      run: |
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        needs: lint-and-check
+        run:
           pytest functions.py --doctest-modules
   deploy:
-    - name: Server check
-      needs: tests
-      run: |
-        echo "Ti é le sang chacal !"
-  slack-attack: 
-    - name: Slack Attack
-      run: |
-        echo "Voilà la release sur Slack poto avoue jte mets bien la mif. Bien mafé bien tieb"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Server check
+        needs: tests
+        run: |
+          echo "Ti é le sang chacal !"
+  
+  slack-attack:  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Slack Attack
+        run: |
+            echo "Voilà la release sur Slack poto avoue jte mets bien la mif. Bien mafé bien tieb"
+
