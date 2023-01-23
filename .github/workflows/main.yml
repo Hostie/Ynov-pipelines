@@ -27,23 +27,22 @@ jobs:
   
   tests: 
     runs-on: ubuntu-latest
+    needs: lint-and-check
     steps:
-      - name: test
-        needs: lint-and-check
-        run:
-          pytest functions.py --doctest-modules
+    - name: test
+      run:
+        pytest functions.py --doctest-modules
   deploy:
     runs-on: ubuntu-latest
+    needs: tests
     steps:
-      - name: Server check
-        needs: tests
-        run: |
-          echo "Ti é le sang chacal !"
+    - name: Server check
+      run: |
+        echo "Ti é le sang chacal !"
   
   slack-attack:  
     runs-on: ubuntu-latest
     steps:
-      - name: Slack Attack
-        run: |
-            echo "Voilà la release sur Slack poto avoue jte mets bien la mif. Bien mafé bien tieb"
-
+    - name: Slack Attack
+      run: |
+         echo "Voilà la release sur Slack poto avoue jte mets bien la mif. Bien mafé bien tieb"
