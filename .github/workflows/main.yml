@@ -32,4 +32,3 @@ jobs:
     - name: Server check
       run: |
         echo "Ti é le sang chacal !"
-        ping -c 4 ynov.com
