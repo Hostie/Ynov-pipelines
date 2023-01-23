@@ -3,7 +3,6 @@ name: Lint et server check
 on: [push, workflow_dispatch]
 
 jobs:
-  runs-on: ubuntu-latest
   lint-and-check:
     runs-on: ubuntu-latest
 
