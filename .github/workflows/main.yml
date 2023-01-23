@@ -1,6 +1,6 @@
 name: Lint et server check
 
-on: [push]
+on: [push, workflow_dispatch]
 
 jobs:
   lint-and-check:
@@ -34,4 +34,5 @@ jobs:
     - name: Server check
       run: |
         echo "Ti é le sang chacal !"
-        ping -c 4 ynov.com
+=======
+>>>>>>> 34bbca2ee0dd456a50ac4150ac06a9c0f1480f57
