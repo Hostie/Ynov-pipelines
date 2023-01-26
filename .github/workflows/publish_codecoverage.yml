@@ -45,7 +45,9 @@ jobs:
       - name: Generate coverage as HTML
         run: |
           pytest --cov=. . --doctest-modules --ignore=server.py --cov-report html:cov_html
-
+          mkdir cov_html/assets/
+          coverage-badge -o cov_html/assets/coverage.svg
+          
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
